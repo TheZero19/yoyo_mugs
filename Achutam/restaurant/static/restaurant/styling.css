@@ -1,0 +1,59 @@
+.nav-item {
+    padding-left: 100px; /* Adjust the padding as needed */
+}
+
+#carouselExampleCaptions {
+    height: 90vh;
+    width: 100%;
+    align: center;
+}
+
+.carousel-inner{
+  width:100%;
+  max-height: 90vh !important;
+}
+
+.carousel-caption {
+    /* Position the caption at the bottom of the carousel */
+    bottom: 0;
+    /* Add some padding to prevent the caption from touching the edges */
+    padding-bottom: 30%;
+    /* Set the background color and opacity */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Set text color */
+    color: white;
+    /* Ensure text is centered horizontally */
+    text-align: center;
+}
+
+.list-group{
+    padding:10%;
+    padding-top: 1%;
+
+}
+
+.list-group-item{
+    /* Set the background color and opacity */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Set text color */
+    color: white;
+    /* Ensure text is centered horizontally */
+    text-align: center;
+}
+
+.mb-1{
+    position: absolute;
+    text-align: center;
+    padding-left: center;
+
+}
+
+#heading-menu{
+    padding-top: 1%;
+    text-align: center;
+    color: white;
+}
+
+#menu-page{
+    background-image: url("https://images.unsplash.com/photo-1690983323310-3f8e55c9272f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
