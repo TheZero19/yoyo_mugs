@@ -16,14 +16,14 @@
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/">YOYO MUGS</a>
+        <a class="navbar-brand" href="{% url 'restaurant-index' %}">YOYO MUGS</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li id = "nav-home" class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/menu">Menu</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'restaurant-menu' %}">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link" href="{% url 'restaurant-about' %}">About Us</a>
                 </li>
             </ul>
 <!--            <form class="d-flex" role="search">-->
@@ -34,6 +34,16 @@
     </div>
 </nav>
 
+<!--<div class = "col-md-8">-->
+<!--    -->
+<!--</div>-->
+{% if messages %}
+    {% for message in messages %}
+        <div class = "alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 {% block content %}
 {% endblock %}
 

@@ -7,68 +7,24 @@
     </div>
 
     <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">APPETIZERS</h5>
-            </div>
-                <p>Momos (Steamed Dumplings): Chicken-190|-, Vegetable-150|-, or Buff-140|
-                    <br>
-                    Sel Roti: Traditional rice-based doughnuts -140|-
-                    <br>
-                    Alu Chop: Spiced potato patties -100|-
-                </p>
-        </a>
+        {% for menu_item_type in menu_item_types %}
         <a href="#" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">SOUPS</h5>
-
+                <h5 class="mb-1">{{ menu_item_type.menuItemType }}</h5>
             </div>
-            <p>Thukpa: Hearty noodle soup-250|-<br>
-                Gundruk Soup: Fermented leafy green soup-160|-</p>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">MAIN COURSES</h5>
-            </div>
-            <p>Dal Bhat Tarkari: Lentil soup, rice, and seasonal vegetables-450|-<br>
-                Gundruk Ra Bhatmas Sadeko: Fermented greens and soybeans-220|-<br>
-                Khasi Ko Masu: Spicy goat curry-540|-<br>
-                Dhido: Traditional buckwheat or millet dough-510|-<br>
-                Sekuwa: Grilled and marinated meat skewers-800|-
+            <p>
+                {% for menu_item in menu_items %}
+                {% if menu_item.itemType == menu_item_type %}
+                {{ menu_item.itemName }}: {{ menu_item.itemPPU }}|-
+                <br>
+                {% endif %}
+                {% endfor %}
             </p>
-
         </a>
-        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">RICE DISHES</h5>
-
-            </div>
-            <p>Biryani: Fragrant rice with chicken, lamb, or vegetables-780|-<br>
-                Kichadi: Nepali-style risotto with lentils and rice-330|-</p>
-
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">DESSERTS</h5>
-
-            </div>
-            <p>Yomari: Steamed dumplings with jaggery and sesame seeds-90|-<br>
-                Gundpak: Sweet candy made from jaggery and sesame seeds-190|-<br>
-                Sel Roti with Sikarni: Sweetened yogurt with rice doughnuts-120|-</p>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">BEVERAGES</h5>
-
-            </div>
-            <p>Chiya (Nepali Tea): Spiced tea with ginger, cardamom, and cloves-60|-<br>
-                Lassi: Refreshing yogurt-based drink-180|-</p>
-            <small class="text-body-secondary">We serve a wide variety of dishes and the menu might not be up to date.
-                The availability of dishes also depends on the occasion and the specials of the day. Contact us for the
-                detailed information of the menu.</small>
-        </a>
+        {% endfor %}
     </div>
 </div>
+
 
 
 {% endblock %}
