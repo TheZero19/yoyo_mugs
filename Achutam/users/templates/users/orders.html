@@ -3,10 +3,17 @@
 
 {% block content %}
 <div id="menu-page">
+
+
     <div id="heading-menu">
-        <h3>YoYo Mugs Pending Orders</h3>
+        {% if request.user.is_superuser%}
+            <h3>YoYo Mugs Pending Orders</h3>
+        {% else %}
+            <h3>Order Here</h3>
+        {% endif %}
     </div>
 
+    {% if request.user.is_superuser %}
     <div class="list-group">
         {% for order in orders %}
             {% if order.isPending == True%}
@@ -25,6 +32,31 @@
             {% endif %}
         {% endfor %}
     </div>
+
+    {% else %}
+        <div class="list-group">
+            <form method="POST">
+                {% csrf_token %}
+                {% for menu_item_type in menu_item_types %}
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ menu_item_type.menuItemType }}</h5>
+                        </div>
+                        <p>
+                            {% for menu_item in menu_items %}
+                                {% if menu_item.itemType == menu_item_type %}
+                                    <input type="checkbox" id="item_{{ menu_item.id }}" name="items" value="{{ menu_item }}">
+                                    <label for="item_{{ menu_item.id }}">{{ menu_item.itemName }}: {{ menu_item.itemPPU }}</label><br>
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                {% endfor %}
+                <br>
+                <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+            </form>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}
