@@ -25,4 +25,5 @@ class Order(models.Model):
     orderID = models.AutoField(primary_key = True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     items = models.ManyToManyField(MenuItem)
+    total_price = models.FloatField(default=0)
     isPending = models.BooleanField(default=True)

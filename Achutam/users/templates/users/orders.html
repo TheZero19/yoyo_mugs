@@ -1,0 +1,30 @@
+
+{% extends 'restaurant/base.html'%}
+
+{% block content %}
+<div id="menu-page">
+    <div id="heading-menu">
+        <h3>YoYo Mugs Pending Orders</h3>
+    </div>
+
+    <div class="list-group">
+        {% for order in orders %}
+            {% if order.isPending == True%}
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Order ID: {{ order.orderID }}</h5>
+                    <h5>Customer: {{ order.customer.username }}</h5>
+                </div>
+                <p>
+                    {% for item in order.items.all %}
+                        <h5>{{ item.itemName }}</h5> <!-- Assuming MenuItem has a 'name' attribute -->
+                    {% endfor %}
+                </p>
+                <h5>Total Price: {{order.total_price}}</h5>
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

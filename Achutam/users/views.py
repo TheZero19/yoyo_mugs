@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from restaurant.models import Order
 
 # Create your views here.
 def register(request):
@@ -27,8 +28,18 @@ def register(request):
         if user is not None:
             login(request, user)
 
-        messages.success(request, f'Account created for { username }!')
-        return redirect('restaurant-index')
+        messages.success(request, f'Account created for { username }! You are now able to log in!')
+        return redirect('login')
 
     else:
         return render(request, "users/register.html")
+
+def users_logout(request):
+    return render(request, "users/logout.html")
+
+def users_orders(request):
+    orders = Order.objects.all()
+    for order in orders:
+        total_price = sum(item.itemPPU for item in order.items.all())
+        setattr(order, 'total_price', total_price)
+    return render(request, "users/orders.html", context={'orders': orders})
